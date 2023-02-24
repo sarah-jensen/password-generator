@@ -1,8 +1,13 @@
 // arrays of character sets
+const lowerCase = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z,]
+const upperCase = [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,]
+const numeral = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0,]
+const special = [!,@,#, $,%,^,&,*, (,), +, -, /,.,<,=,>,?,[,],_,{,},~,]
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var passwordLength = prompt('How long do you want your password to be? Enter a number from 8-128.');
+
+
 // var confirmLowercase
 // var confirmUppercase
 // var confirmNumeral
@@ -15,10 +20,55 @@ function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
- 
+  // determine how many characters long the password should be
+  const passwordLength = function () {
+    const howLong = prompt('How long do you want your password to be? Enter a number from 8-128.');
+    // alert for non-numbers
+    if (howLong.includes(lowerCase)) {
+      alert('You must enter a valid number.');
+      return;
+    } else if (howLong.includes(upperCase)) {
+      alert('You must enter a valid number.');
+      return;
+    } else if (howLong.includes(special)) {
+      alert('You must enter a valid number.');
+      return;
+    }
+
+    const confirmLowercase = confirm('Are lowercase letters required?');
+    if confirmLowercase = true {
+      // include lowerCase in required character set
+    } else {
+      // include lowerCase in optional character set
+    }
+
+    const confirmUppercase = confirm('Are uppercase letters required?');
+    if confirmUppercase = true {
+      // include upperCase in required character set
+    } else {
+      // include upperCase in optional character set
+    }
+
+    const confirmNumeral = confirm('Are numerals required?');
+    if confirmNumeral = true {
+      // include numeral in required character set
+    } else {
+      // include numeral in optional character set
+    }
+
+    const confirmSpecial = confirm ('Are special characters required?');
+    if confirmSpecial = true {
+      // include special in required character set
+    } else {
+      // include special in optional character set
+    }
+  }
+
+
 
   passwordText.value = password;
 
+}
 }
 
 // Add event listener to generate button
