@@ -1,62 +1,129 @@
 // arrays of character sets
-const lowerCase = [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z,];
-const upperCase = [A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z,];
-const numeral = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0,];
-const special = [!, @, #, \$, %, ^, &, *, +, -, /, ., <, =, >, ?, _, ~,];
+const lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', ];
+const uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', ];
+const numeral = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', ];
+const special = ['!', '@', '#', '\$', '%', '^', '&', '*', '+', '-', '/', '.', '<', '=', '>', '?', '_', '~', ];
 
 // required characterset
 var includeThese = [];
-var password = ' ';
+var password = [];
 const passwordText = document.querySelector("#password");
 const generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-/*
+
 function writePassword() {
-  var password = generatePassword();
-  passwordText.textContent = password.join(' ');
+  // var password = generatePassword();
 
-  passwordText.value = password;
-  */
- 
-// Capture user input
-// determine how many characters long the password should be
-const howLong = prompt('How long do you want your password to be? Enter a number from 8-128.');
-if (howLong.includes(numeral)) {
-  var length = howLong;
-  // alert for non-numbers
-} else {
-  alert('You must enter a valid number.');
+  // passwordText.value = password;
+  // passwordText.textContent = password.join(' ');
+
+
+  // Capture user input
+  // determine how many characters long the password should be
+  const howLong = prompt('How long do you want your password to be? Enter a number from 8-128.');
+  // alert for too short or too long
+  if (howLong <= 7 || howLong > 128) {
+    alert('You must enter a valid number.');
+    return;
+    // alert for NaN
+  } else if (howLong.includes(lowercase) || howLong.includes(uppercase) || howLong.includes(special)) {
+    alert('You must enter a valid number.');
+    return;
+  } else {
+    var length = howLong;
+    parseInt(howLong);
+    console.log(howLong);
+  }
+
+  // confirm types of character sets to be included
+  const confirmLowercase = confirm('Include lowercase letters?');
+  if (confirmLowercase) {
+    // include lowerCase in required character set
+    includeThese = lowercase;
+    console.log(includeThese);
+  } else {
+    console.log("no lowerCase");
+  }
+
+  const confirmUppercase = confirm('Include uppercase letters?');
+  if (confirmUppercase && confirmLowercase) {
+    // include lowerCase and upperCase in required character set
+    includeThese = [lowercase + uppercase];
+    console.log(includeThese);
+  } else if (confirmUppercase) {
+    // include upperCase
+    includeThese = uppercase;
+    console.log(includeThese)
+  } else {
+    console.log("no uppercase");
+  }
+
+  const confirmNumeral = confirm('Include numerals?');
+  if (confirmLowercase && confirmUppercase && confirmNumeral) {
+    // include lowercase, uppercase, and numeral in required character set
+    includeThese = [lowercase + uppercase + numeral];
+    console.log(includeThese);
+  } else if (confirmLowercase && confirmNumeral) {
+    // include lowercase and numeral only
+    includeThese = [lowercase + numeral];
+    console.log(includeThese);
+  } else if (confirmUppercase && confirmNumeral) {
+    // include uppercase and numeral only
+    includeThese = [uppercase + numeral];
+    console.log(includeThese);
+  } else if (confirmNumeral) {
+    // include numeral only
+    includeThese = numeral;
+    console.log(includeThese)
+  } else {
+    console.log("no numerals");
+  }
+
+  const confirmSpecial = confirm('Include special characters?');
+  if (confirmLowercase && confirmUppercase && confirmNumeral && confirmSpecial) {
+    // include all in required character set
+    includeThese = [lowercase + uppercase + numeral + special];
+    console.log(includeThese);
+  } else if (confirmLowercase && confirmUppercase && confirmSpecial) {
+    // include lowercase, uppercase, and special
+    includeThese = [lowercase + uppercase + special];
+    console.log(includeThese);
+  } else if (confirmLowercase && confirmNumeral && confirmSpecial) {
+    // include lowercase, numeral, and special
+    includeThese = [lowercase + numeral + special];
+    console.log(includeThese);
+  } else if (confirmUppercase && confirmNumeral && confirmSpecial) {
+    // include uppercase, numeral, and special
+    includeThese = [uppercase + numeral + special];
+    console.log(includeThese);
+  } else if (confirmLowercase && confirmSpecial) {
+    // include lowercase and special
+    includeThese = [lowercase + special];
+    console.log(includeThese);
+  } else if (confirmUppercase && confirmSpecial) {
+    // include uppercase and special
+    includeThese = [uppercase + special];
+    console.log(includeThese);
+  } else if (confirmNumeral && confirmSpecial) {
+    // include numeral and special
+    includeThese = [numeral + special];
+    console.log(includeThese);
+  } else if (confirmSpecial) {
+    // include special only
+    includeThese = special;
+    console.log(includeThese);
+  } else {
+    console.log("no special characters");
+  }
+
+
 }
 
-// confirm types of character sets to be included
-const confirmLowercase = confirm('Include lowercase letters?');
-if (confirmLowercase) {
-  // include lowerCase in required character set
-  includeThese.push(lowerCase)
 }
+//   return password.push
 
-const confirmUppercase = confirm('Include uppercase letters?');
-if (confirmUppercase) {
-  // include upperCase in required character set
-  includeThese.push(UpperCase);
-}
-
-const confirmNumeral = confirm('Include numerals?');
-if (confirmNumeral) {
-  // include numeral in required character set
-  includeThese.push(numeral);
-}
-
-const confirmSpecial = confirm('Include special characters?');
-if (confirmSpecial) {
-  // include special in required character set
-  includeThese.push(special);
-}
-
-function generatePassword() {
-
-}
+// }
 
 
 
