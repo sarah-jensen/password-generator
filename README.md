@@ -15,7 +15,7 @@ View the webpage and click the "Generate Password" button to enter user paramete
 
 View the webpage here: https://sarah-jensen.github.io/password-generator/
 
-![A password generator consisting of a text field containing a placeholder message, "your secure password," and a red button labeled, "generate password."](./images/password-generated-screenshot.png)
+![A password generator consisting of a text field containing a placeholder message, "your secure password," and a red button labeled, "generate password."](./Images/password-generated-screenshot.png)
 
 
 ## Credits
