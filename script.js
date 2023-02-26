@@ -4,22 +4,16 @@ const uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', '
 const numeral = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',];
 const special = ['!', '@', '#', '\$', '%', '^', '&', '*', '+', '-', '/', '.', '<', '=', '>', '?', '_', '~',];
 
-// required characterset
+// required characterset based on user input
 var requiredChar = [];
+// array of randomized characters of user-specified length
+var pwdArray = [];
 
-var password = "";
 const passwordText = document.querySelector("#password");
 const generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
 
 function writePassword() {
-
-
-  // passwordText.value = password;
-  // passwordText.textContent.innerHTML = password.join(' ');
-
-
   // Capture user input
   // determine how many characters long the password should be
   var howLong = prompt('How long do you want your password to be? Enter a number from 8-128.');
@@ -32,7 +26,7 @@ function writePassword() {
     alert('You must enter a valid number.');
     return;
   } else {
-    // parseInt(howLong);
+    // change user entered length from string to number
     var pwdchar = parseInt(howLong);
     console.log(pwdchar);
   }
@@ -118,50 +112,27 @@ function writePassword() {
     console.log("no special characters");
   }
 
-
-  // randomly select the correct number of characters based on user response to howLong prompt
   const randomize = function () {
-
-    // uses loop to push characters to password array
-    for (i = 0; i < pwdchar; i++); {
-      var pwdArray = [];
-      var char = requiredChar[Math.floor(Math.random() * pwdchar)];
+    for (i = 0; i < pwdchar; i++) {
+      // randomly select characters from array of user selected character sets
+      var char = requiredChar[Math.floor(Math.random() * requiredChar.length)];
+      // pushes characters to pwdArray
       pwdArray.push(char);
       console.log(char);
-
     }
     console.log(pwdArray);
   }
 
   randomize();
 
+  function displayPassword() {
+    // Write password to the #password text area
+    passwordText.innerHTML = pwdArray.join('');
+  }
+
+  displayPassword();
 }
-
-
-
-
-
-
-//   return password.push
-
-// }
-
-
-
-
-
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-
-
-
-
-// left off trying to get pwdArray to include the right number of characters
-
-
-// // WHEN all prompts are answered
-// // THEN a password is generated that matches the selected criteria
-// // WHEN the password is generated
-// // THEN the password is either displayed in an alert or written to the page
